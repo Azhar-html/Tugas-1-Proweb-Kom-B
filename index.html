@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Suit</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: lightgray;
+        }
+        .game {
+            background-color: white;
+            width: 350px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game">
+        <h1>Game Suit</h1>
+        <p>Pilih Gunting, Batu, atau Kertas</p>
+        <button onclick="main('Gunting')">Gunting</button>
+        <button onclick="main('Batu')">Batu</button>
+        <button onclick="main('Kertas')">Kertas</button>
+        <h3 id="hasil">Hasil permainan</h3>
+        <p>Pilihan kamu: <span id="pemain">-</span></p>
+        <p>Pilihan komputer: <span id="komputer">-</span></p>
+        <h3>Skor</h3>
+        <p>Pemain: <span id="skor1">0</span></p>
+        <p>Komputer: <span id="skor2">0</span></p>
+        <button onclick="ulang()">Ulangi</button>
+    </div>
+    <script>
+        let skor1 = 0;
+        let skor2 = 0;
+        function main(pilihanPemain) {
+            let pilihan = ["Gunting", "Batu", "Kertas"];
+            let pilihanKomputer = pilihan[Math.floor(Math.random() * 3)];
+            if (pilihanPemain == pilihanKomputer) {
+                hasil.innerHTML = "Seri";
+            }
+            else if (
+                pilihanPemain == "Gunting" && pilihanKomputer == "Kertas" ||
+                pilihanPemain == "Batu" && pilihanKomputer == "Gunting" ||
+                pilihanPemain == "Kertas" && pilihanKomputer == "Batu"
+            ) {
+                hasil.innerHTML = "Kamu Menang";
+                skor1 = skor1 + 1;
+            }
+            else {
+                hasil.innerHTML = "Kamu Kalah";
+                skor2 = skor2 + 1;
+            }
+            pemain.innerHTML = pilihanPemain;
+            komputer.innerHTML = pilihanKomputer;
+            skor1Tampil.innerHTML = skor1;
+            skor2Tampil.innerHTML = skor2;
+        }
+        function ulang() {
+            skor1 = 0;
+            skor2 = 0;
+            hasil.innerHTML = "Hasil permainan";
+            pemain.innerHTML = "-";
+            komputer.innerHTML = "-";
+            skor1Tampil.innerHTML = 0;
+            skor2Tampil.innerHTML = 0;
+        }
+    </script>
+</body>
+</html>
